@@ -25,17 +25,17 @@ func TestNewStrategy(t *testing.T) {
 		URI: "https://api.sendinblue.com/v3/smtp/email",
 		Headers: map[string]interface{}{
 			"Content-Type": "application/json",
-			"api-key":      "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",
+			"api-key":      "",
 		},
 		Params: map[string]interface{}{
 			"sender": map[string]interface{}{
-				"name":  "Salon Management App",
-				"email": "info@salonmanagementapp.com",
+				"name":  "sender name",
+				"email": "info@yourdomain.com",
 			},
 			"to": []map[string]interface{}{
 				{
-					"email": "emirhan.1ataman@gmail.com",
-					"name":  "Emirhan Ataman",
+					"email": "your@test.com",
+					"name":  "Test Surname",
 				},
 			},
 			"subject":     "Hello world",
@@ -52,21 +52,17 @@ func TestEmailStrategy(t *testing.T) {
 		URI: "https://api.sendinblue.com/v3/smtp/email",
 		Headers: map[string]interface{}{
 			"Content-Type": "application/json",
-			"api-key":      "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",
+			"api-key":      "",
 		},
 		Params: map[string]interface{}{
 			"sender": map[string]interface{}{
-				"name":  "Salon Management App",
-				"email": "info@salonmanagementapp.com",
+				"name":  "sender name",
+				"email": "info@yourdomain.com",
 			},
 			"to": []map[string]interface{}{
 				{
-					"email": "emirhan.1ataman@gmail.com",
-					"name":  "Emirhan Ataman",
-				},
-				{
-					"email": "ilksms@gmail.com",
-					"name":  "İlksms",
+					"email": "your@test.com",
+					"name":  "Test Surname",
 				},
 			},
 			"templateId": 1,

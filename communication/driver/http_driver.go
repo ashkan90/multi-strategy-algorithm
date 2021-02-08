@@ -32,6 +32,19 @@ type HTTPDriver struct {
 	hasError bool
 }
 
+func (p *Pair) Append(val interface{}) {
+	if val == nil {
+		return
+	}
+
+	var newPair = CastToPair(val)
+	for key, value := range newPair {
+		if value != nil {
+			map[string]interface{}(*p)[key] = value
+		}
+	}
+}
+
 func (driver *HTTPDriver) Method(m string) *HTTPDriver {
 	driver.method = m
 	return driver
