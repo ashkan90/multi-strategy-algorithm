@@ -30,3 +30,5 @@ Multi strategy algorithm explains how multiple algorithm works together within s
 	strategy.Send()
   
 ```
+TODO
+-[] cli üzerinden strateji oluşturulacak.
