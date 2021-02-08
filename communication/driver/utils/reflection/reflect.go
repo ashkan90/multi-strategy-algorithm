@@ -37,7 +37,13 @@ func ConvertToMap(v reflect.Value) (cv Conversion) {
 			if js := field.Tag.Get("json"); js != "" {
 				key = js
 			}
+
+			if valField := v.Field(i); valField.Kind() == reflect.Ptr && valField.IsNil() {
+				continue
+			}
+
 			cv[key] = v.Field(i).Interface()
+
 		}
 
 	default:
