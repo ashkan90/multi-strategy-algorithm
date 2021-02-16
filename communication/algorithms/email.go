@@ -1,7 +1,9 @@
 package algorithms
 
 import (
+	"encoding/json"
 	"github.com/ashkan90/multi-strategy-algorithm/communication/driver"
+	json_util "github.com/ashkan90/multi-strategy-algorithm/communication/driver/utils/json"
 	"github.com/ashkan90/multi-strategy-algorithm/communication/strategy"
 	"log"
 )
@@ -40,4 +42,13 @@ func (e *Email) Before(handler strategy.BeforeHandler) {
 }
 func (e *Email) After(handler strategy.AfterHandler) {
 	e.after = handler
+}
+
+func (e *Email) Deserialize() json_util.Scanner {
+	var data, err = json.Marshal(e)
+	if err != nil {
+		return json_util.Jsonify(data)
+	}
+
+	return json_util.Jsonify(data)
 }
