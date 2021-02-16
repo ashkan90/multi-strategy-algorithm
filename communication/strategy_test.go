@@ -83,5 +83,9 @@ func BeforeHandler(algorithm _strategy.Algorithm) {
 }
 
 func AfterHandler(algorithm _strategy.Algorithm, response interface{}) {
+	var out map[string]interface{}
+
+	algorithm.Deserialize().Scan(&out)
 	log.Println("AfterHandler -> Incoming Response ->", response)
+	log.Println("AfterHandler -> Deserialized Algorithm ->", out)
 }
