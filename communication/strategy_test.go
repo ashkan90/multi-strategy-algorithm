@@ -82,6 +82,6 @@ func BeforeHandler(algorithm _strategy.Algorithm) {
 	log.Println("BeforeHandler -> Incoming Algorithm ->", algorithm)
 }
 
-func AfterHandler(response interface{}) {
+func AfterHandler(algorithm _strategy.Algorithm, response interface{}) {
 	log.Println("AfterHandler -> Incoming Response ->", response)
 }

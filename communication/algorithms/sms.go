@@ -1,7 +1,9 @@
 package algorithms
 
 import (
+	"encoding/json"
 	"github.com/ashkan90/multi-strategy-algorithm/communication/driver"
+	json_util "github.com/ashkan90/multi-strategy-algorithm/communication/driver/utils/json"
 	"github.com/ashkan90/multi-strategy-algorithm/communication/strategy"
 	"log"
 )
@@ -16,7 +18,9 @@ type SMS struct {
 }
 
 func (s *SMS) Send() {
-	s.before(s)
+	if s.before != nil {
+		s.before(s)
+	}
 
 	dsms := driver.NewSMS(s.URI, s.Headers)
 	dsms.Serialize(s.Params)
@@ -27,19 +31,24 @@ func (s *SMS) Send() {
 		return
 	}
 
-	s.after(dsms.Response)
+	if s.after != nil {
+		s.after(s, dsms.Response)
+	}
 	log.Println("SMSStrategy -> Response -> ", dsms.Response)
 }
 
 func (s *SMS) Before(handler strategy.BeforeHandler) {
-	if handler == nil {
-		handler = func(algorithm strategy.Algorithm) {}
-	}
 	s.before = handler
 }
 func (s *SMS) After(handler strategy.AfterHandler) {
-	if handler == nil {
-		handler = func(response interface{}) {}
-	}
 	s.after = handler
+}
+
+func (s *SMS) Deserialize() json_util.Scanner {
+	var data, err = json.Marshal(s)
+	if err != nil {
+		return json_util.Jsonify(data)
+	}
+
+	return json_util.Jsonify(data)
 }
