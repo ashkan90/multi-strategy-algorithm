@@ -29,7 +29,7 @@ func (e *Email) Send() {
 	}
 
 	if e.after != nil {
-		e.after(smtp.Response)
+		e.after(e, smtp.Response)
 	}
 
 	log.Println("EmailStrategy -> Response -> ", smtp.Response)

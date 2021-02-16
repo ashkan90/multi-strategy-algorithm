@@ -1,7 +1,7 @@
 package strategy
 
 type BeforeHandler func(algorithm Algorithm)
-type AfterHandler func(response interface{})
+type AfterHandler func(algorithm Algorithm, response interface{})
 
 type Algorithm interface {
 	Send()
